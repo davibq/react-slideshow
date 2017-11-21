@@ -18,7 +18,7 @@ class Fade extends Component {
     this.getImageDim = this.getImageDim.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.timeout = setTimeout(
       () => this.fadeImages('next'),
       this.props.duration
@@ -26,9 +26,6 @@ class Fade extends Component {
     this.setState({
       images: this.props.images.reverse()
     });
-  }
-
-  componentDidMount() {
     this.width = document.querySelector(
       '.' + this.props.classes.fadeWrapper
     ).clientWidth;
