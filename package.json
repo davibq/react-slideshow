@@ -1,6 +1,6 @@
 {
   "name": "react-slideshow-image",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "author": "Femi Oladeji",
   "description": "An image slideshow with react",
   "engines": {
@@ -125,6 +125,9 @@
     "extends": "react-app"
   },
   "dependencies": {
-    "prop-types": "^15.5.10"
+    "jss": "^9.3.3",
+    "jss-preset-default": "^4.0.1",
+    "prop-types": "^15.5.10",
+    "react-jss": "^8.1.0"
   }
 }

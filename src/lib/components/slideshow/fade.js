@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import injectSheet from 'react-jss';
 
-import './fade.css';
+import styles from './fade-style';
 
 class Fade extends Component {
   constructor(props) {
@@ -28,7 +29,9 @@ class Fade extends Component {
   }
 
   componentDidMount() {
-    this.width = document.querySelector('.fade-wrapper').clientWidth;
+    this.width = document.querySelector(
+      '.' + this.props.classes.fadeWrapper
+    ).clientWidth;
     this.applyStyle();
     this.addResizeListener();
   }
@@ -40,7 +43,9 @@ class Fade extends Component {
 
   addResizeListener() {
     window.addEventListener('resize', () => {
-      this.width = document.querySelector('.fade-wrapper').clientWidth;
+      this.width = document.querySelector(
+        '.' + this.props.classes.fadeWrapper
+      ).clientWidth;
       this.applyStyle();
     });
   }
@@ -53,19 +58,13 @@ class Fade extends Component {
   }
 
   render() {
-    const { type } = this.props;
+    const { classes } = this.props;
     const { images } = this.state;
     return (
-      <div className="container">
-        {this.props.showArrows && (
-          <div className="nav" onClick={() => this.fadeImages('prev')}>
-            {' '}
-            &lt;{' '}
-          </div>
-        )}
+      <div className={classes.container}>
         {this.props.showIndicator && (
           <div
-            className="indicator"
+            className={classes.indicator}
             style={{
               backgroundColor: this.props.indicatorColor,
               animationDuration:
@@ -74,9 +73,9 @@ class Fade extends Component {
             }}
           />
         )}
-        <div className={`fade-wrapper ${type}`}>
+        <div className={classes.fadeWrapper}>
           <div
-            className="images-wrap"
+            className={classes.imagesWrap}
             ref={wrap => (this.imageContainer = wrap)}
           >
             {images.map((each, key) => (
@@ -87,18 +86,13 @@ class Fade extends Component {
                 onLoad={key === 0 ? this.getImageDim : null}
                 data-index={key}
                 key={key}
+                className={classes.imagesWrapDiv}
               >
-                <img alt={each.alt} src={each.src} />
+                <img alt={each.alt} src={each.src} className={classes.image} />
               </div>
             ))}
           </div>
         </div>
-        {this.props.showArrows && (
-          <div className="nav" onClick={() => this.fadeImages('next')}>
-            {' '}
-            &gt;{' '}
-          </div>
-        )}
       </div>
     );
   }
@@ -150,4 +144,4 @@ Fade.PropTypes = {
   indicatorColor: PropTypes.string
 };
 
-export default Fade;
+export default injectSheet(styles)(Fade);

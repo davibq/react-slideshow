@@ -1,2 +1,6 @@
-export { default as Slide } from './components/slideshow/slide';
+import jss from 'jss';
+import preset from 'jss-preset-default';
+
+jss.setup(preset());
+
 export { default as Fade } from './components/slideshow/fade';

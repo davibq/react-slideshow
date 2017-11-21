@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-import { Slide, Fade } from './lib';
+import { Fade } from './lib';
 import './app.css';
 
 class App extends Component {
   render() {
-    const slideImages = [
-      'images/slide_2.jpg',
-      'images/slide_3.jpg',
-      'images/slide_4.jpg'
-    ];
-
     const fadeImages = [
       {
         src: 'images/slide_5.jpg',
