@@ -8,7 +8,8 @@ let styles = {
     flexWrap: 'wrap'
   },
   imagesWrapDiv: {
-    position: 'absolute'
+    position: 'absolute',
+    width: '100%'
   },
   image: {
     width: '100%'
