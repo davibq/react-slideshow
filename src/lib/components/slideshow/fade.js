@@ -47,6 +47,7 @@ class Fade extends Component {
 
   applyStyle() {
     this.imageRefs.forEach((eachImage, index) => {
+      if (!eachImage) return;
       eachImage.style.width = `${this.width}px`;
     });
   }
@@ -56,15 +57,29 @@ class Fade extends Component {
     const { images } = this.state;
     return (
       <div className="container">
-        <div className="nav" onClick={() => this.fadeImages('prev')}>
-          {' '}&lt;{' '}
-        </div>
+        {this.props.showArrows && (
+          <div className="nav" onClick={() => this.fadeImages('prev')}>
+            {' '}
+            &lt;{' '}
+          </div>
+        )}
+        {this.props.showIndicator && (
+          <div
+            className="indicator"
+            style={{
+              backgroundColor: this.props.indicatorColor,
+              animationDuration:
+                (this.props.duration + this.props.transitionDuration) / 1000 +
+                's'
+            }}
+          />
+        )}
         <div className={`fade-wrapper ${type}`}>
           <div
             className="images-wrap"
             ref={wrap => (this.imageContainer = wrap)}
           >
-            {images.map((each, key) =>
+            {images.map((each, key) => (
               <div
                 ref={el => {
                   this.imageRefs.push(el);
@@ -73,14 +88,17 @@ class Fade extends Component {
                 data-index={key}
                 key={key}
               >
-                <img alt="" src={each} />
+                <img alt={each.alt} src={each.src} />
               </div>
-            )}
+            ))}
           </div>
         </div>
-        <div className="nav" onClick={() => this.fadeImages('next')}>
-          {' '}&gt;{' '}
-        </div>
+        {this.props.showArrows && (
+          <div className="nav" onClick={() => this.fadeImages('next')}>
+            {' '}
+            &gt;{' '}
+          </div>
+        )}
       </div>
     );
   }
@@ -117,12 +135,19 @@ class Fade extends Component {
 
 Fade.defaultProps = {
   duration: 5000,
-  transitionDuration: 1000
+  transitionDuration: 1000,
+  showArrows: true,
+  showIndicator: true,
+  indicatorColor: '#5bb0dc'
 };
 
 Fade.PropTypes = {
   images: PropTypes.array.isRequired,
   duration: PropTypes.number,
-  transitionDuration: PropTypes.transitionDuration
+  transitionDuration: PropTypes.number,
+  showArrows: PropTypes.bool,
+  showIndicator: PropTypes.bool,
+  indicatorColor: PropTypes.string
 };
+
 export default Fade;

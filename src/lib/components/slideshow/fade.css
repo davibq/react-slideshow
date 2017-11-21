@@ -16,6 +16,19 @@
 .container {
   display: flex;
   align-items: center;
+  position: relative;
+}
+.container .indicator {
+  animation-iteration-count: infinite;
+  animation-name: indicatorwidth;
+  border-radius: 20px;
+  box-shadow: 5px 1px 10px 0px #b7c5c7;
+  height: 3px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: width 0.1s;
+  z-index: 1;
 }
 .container .nav {
   height: 30px;
@@ -38,4 +51,13 @@
 }
 .container .nav:last-of-type {
   margin-left: -30px;
+}
+
+@keyframes indicatorwidth {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
 }

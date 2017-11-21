@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Slide, Fade, Zoom } from './lib';
+import { Slide, Fade } from './lib';
 import './app.css';
 
 class App extends Component {
@@ -11,51 +11,30 @@ class App extends Component {
     ];
 
     const fadeImages = [
-      'images/slide_5.jpg',
-      'images/slide_6.jpg',
-      'images/slide_7.jpg'
+      {
+        src: 'images/slide_5.jpg',
+        alt: '1'
+      },
+      {
+        src: 'images/slide_6.jpg',
+        alt: '2'
+      },
+      {
+        src: 'images/slide_7.jpg',
+        alt: '3'
+      }
     ];
 
     return (
       <div>
-        <h3>Slide Effect</h3>
-        <div className="slide-container">
-          <Slide
-            images={slideImages}
-            duration="5000"
-            transitionDuration="1000"
-          />
-        </div>
-        <br />
         <h3>Fade Effect</h3>
         <div className="slide-container">
           <Fade
             images={fadeImages}
-            duration="5000"
-            transitionDuration="1000"
+            duration={5000}
+            transitionDuration={1000}
             direction="in"
-          />
-        </div>
-
-        <br />
-        <h3>Zoom out Effect</h3>
-        <div className="slide-container">
-          <Zoom
-            images={fadeImages}
-            duration="5000"
-            transitionDuration="1000"
-            scale="0.4"
-          />
-        </div>
-
-        <br />
-        <h3>Zoom in Effect</h3>
-        <div className="slide-container">
-          <Zoom
-            images={fadeImages}
-            duration="5000"
-            transitionDuration="1000"
-            scale="1.3"
+            showArrows={false}
           />
         </div>
       </div>
